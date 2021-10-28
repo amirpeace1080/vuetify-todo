@@ -1,7 +1,6 @@
 <template>
   <v-app id="inspire">
      <v-navigation-drawer
-      absolute
       v-model="drawer"
       app
     >
@@ -38,12 +37,13 @@
     </v-navigation-drawer>
 
      <v-app-bar
-      @click="drawer =! drawer"
       app
-      color="#primary"
+      color="primary"
       dark
+      shrink-on-scroll
       prominent
       src="https://picsum.photos/1920/1080?random"
+      scroll-target="#scrolling-techniques-5"
     >
       <template v-slot:img="{ props }">
         <v-img
@@ -52,9 +52,9 @@
         ></v-img>
       </template>
 
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="drawer =! drawer"></v-app-bar-nav-icon>
 
-      <v-app-bar-title>Title</v-app-bar-title>
+      <v-app-bar-title>Vuetify Todo</v-app-bar-title>
 
       <v-spacer></v-spacer>
 
