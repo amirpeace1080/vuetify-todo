@@ -1,14 +1,11 @@
 <template>
-  <div class="home">
-    <h1>Home page .....</h1>
-  </div>
+  <v-app>
+    <h1>Home page...</h1>
+  </v-app>
 </template>
 
 <script>
 
 export default {
-  name: "Home",
-  components: {
-  },
 };
 </script>
