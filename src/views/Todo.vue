@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <h1>Home page...</h1>
+    <h1>Todo page...</h1>
   </v-app>
 </template>
 
