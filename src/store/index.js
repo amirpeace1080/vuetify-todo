@@ -35,8 +35,20 @@ export default new Vuex.Store({
     },
 
     showSnackbar(state, text){
+      let timeout = 0
+      if(state.snackbar.show){
+        state.snackbar.show = false
+        timeout = 300
+      }
+
+      setTimeout(() => {
+        
       state.snackbar.show = true
       state.snackbar.text = text
+      }, timeout);
+    },
+    hideSnackbar(state){
+      state.snackbar.show = false
     }
   },
   actions: {
