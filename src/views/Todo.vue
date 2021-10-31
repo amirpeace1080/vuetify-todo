@@ -3,7 +3,7 @@
     <v-text-field
       v-model="newTaskTitle"
       @click:append="addTask"
-      @keyup.enter="addTask"
+      @keyup.enter="$store.commit('addTask', newTaskTitle)"
       class="pa-3"
       outlined
       label="Add Task"
@@ -69,12 +69,7 @@ export default {
   },
   methods:{
     addTask(){
-      let newTask ={
-        id: Date.now(),
-        title: this.newTaskTitle,
-        done: false
-      }
-      this.tasks.push(newTask)
+      this.$store.commit('addTask', this.newTaskTitle)
       this.newTaskTitle = ''
     },
     doneTask(id){
