@@ -21,7 +21,7 @@
 
           <v-list-item-action>
             <v-btn
-              @click.stop="$store.dispatch('deleteTask', task.id)"
+              @click.stop="dialogs.delete = true"
               icon>
               <v-icon color="primary lighten-1">mdi-delete</v-icon>
             </v-btn>
@@ -31,8 +31,11 @@
 
         </v-list-item>
         <v-divider></v-divider>
-        
-        <DialogDelet />
+
+        <DialogDelet
+          v-if="dialogs.delete"
+          @close="dialogs.delete = false"
+          :task="task" />
       </div>
 </template>
 
@@ -43,7 +46,14 @@ export default {
   components:{
     DialogDelet
   },
-    props: ['task']
+    props: ['task'],
+    data(){
+      return{
+        dialogs:{
+          delete: false
+        }
+      }
+    }
 }
 </script>
 
