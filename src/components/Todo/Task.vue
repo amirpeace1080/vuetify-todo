@@ -20,11 +20,7 @@
 
 
           <v-list-item-action>
-            <v-btn
-              @click.stop="dialogs.delete = true"
-              icon>
-              <v-icon color="primary lighten-1">mdi-delete</v-icon>
-            </v-btn>
+            <TaskMenu />
           </v-list-item-action>
           </template>
 
@@ -41,10 +37,12 @@
 
 <script>
 import DialogDelet from './Dialogs/DialogDelete.vue'
+import TaskMenu from './TaskMenu.vue'
 
 export default {
   components:{
-    DialogDelet
+    DialogDelet,
+    TaskMenu
   },
     props: ['task'],
     data(){
