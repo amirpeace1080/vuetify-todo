@@ -1,16 +1,20 @@
 <template>
   <div>
-    <v-menu offset-y>
+    <v-menu
+      bottom
+      left
+    >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-        color="primary"
-            icon
+          color="primary"
+          icon
           v-bind="attrs"
           v-on="on"
         >
-            <v-icon>mdi-dots-vertical</v-icon>
+          <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
       </template>
+
       <v-list>
         <v-list-item
           v-for="(item, index) in items"
@@ -28,54 +32,53 @@
     <DialogDelet
       v-if="dialogs.delete"
       @close="dialogs.delete = false"
-      :task="task" />
+      :task="task"
+    />
 
   </div>
-   
 </template>
 
 <script>
 import DialogDelet from './Dialogs/DialogDelete.vue'
 
 export default {
-  components: {
+  components:{
     DialogDelet
   },
+  props: ['task'],
   data: () => ({
-    props:['task'],
-    dialogs:{
-        delete: false
-      },
+    dialogs: {
+      delete: false
+    },
     items: [
-      {
+      { 
         title: 'Edit',
         icon: 'mdi-pencil',
-        click(){
-          console.log('edit');
+        click() {
+          console.log('edit')
         }
       },
       {
         title: 'Due date',
         icon: 'mdi-calendar',
-        click(){
-          console.log('Due date');
+        click() {
+          console.log('due date')
         }
       },
       {
         title: 'Delete',
         icon: 'mdi-delete',
-        click(){
+        click() {
           this.dialogs.delete = true
         }
-      },
+      }
     ],
   }),
-    methods: {
-      handleClick(index){
-        this.items[index].click.call(this)
-        console.log('dle');
-      }
+  methods: {
+    handleClick(index) {
+      this.items[index].click.call(this)
     }
+  }
 }
 </script>
 
