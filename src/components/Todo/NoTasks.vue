@@ -19,12 +19,12 @@ export default {
 }
 </script>
 
-<style lang="sass">
-    .notasks
-        position: absolute
-        left: 50%
-        top: 50%
-        transform: translate(-50%, 50%)
-        opacity: 0.5
-    89
+<style lang="scss">
+    .notasks{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 50%);
+        opacity: 0.5;
+        }
 </style>

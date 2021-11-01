@@ -31,11 +31,18 @@
 
         </v-list-item>
         <v-divider></v-divider>
+        
+        <DialogDelet />
       </div>
 </template>
 
 <script>
+import DialogDelet from './Dialogs/DialogDelete.vue'
+
 export default {
+  components:{
+    DialogDelet
+  },
     props: ['task']
 }
 </script>
