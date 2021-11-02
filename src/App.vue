@@ -13,15 +13,15 @@
       >
         <v-avatar size="70" class="mb-2">
           <img
-            src="https://avatars.githubusercontent.com/u/48976395?v=4"
-            alt="Sharifi Mohammad"
+            src="https://s.gravatar.com/avatar/ce7f3697e231df38b3ca6065848520da?s=160"
+            alt="Danny Connell"
           >
         </v-avatar>
         <div class="white--text text-subtitle-1 font-weight-bold">
-          Mohammd Sharifi
+          Danny Connell
         </div>
         <div class="white--text text-subtitle-2">
-          Front-end Developer
+          danny__connell
         </div>
       </v-img>
 
@@ -69,7 +69,7 @@
         </v-row>
         <v-row>
           <v-toolbar-title class="text-h4 ml-4">
-            Vuetify Todo
+            {{ $store.state.appTitle }}
           </v-toolbar-title>
         </v-row>
         <v-row>

@@ -1,26 +1,29 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Todo from "../views/Todo.vue";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Todo from '../views/Todo.vue'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes = [
   {
-    path: "/",
-    name: "Todo",
-    component: Todo,
+    path: '/',
+    name: 'Todo',
+    component: Todo
   },
   {
-    path: "/about",
-    name: "About",
-    component: () => import("../views/About.vue"),
-  },
-];
+    path: '/about',
+    name: 'About',
+    component: () => import('../views/About.vue')
+  }
+]
 
 const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes,
-});
+  routes
+})
 
-export default router;
+router.beforeEach((to, from, next) => {
+  document.title = `${ process.env.VUE_APP_TITLE } - ${ to.name }`
+  next()
+})
+
+export default router
