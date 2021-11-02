@@ -29,20 +29,17 @@
       </v-list>
     </v-menu>
 
-    <DialogEdit
+    <dialog-edit
       v-if="dialogs.edit"
       @close="dialogs.edit = false"
       :task="task"
     />
-    
-    
-    <DialogDueDate
+    <dialog-due-date
       v-if="dialogs.dueDate"
       @close="dialogs.dueDate = false"
       :task="task"
     />
-    
-    <DialogDelet
+    <dialog-delete
       v-if="dialogs.delete"
       @close="dialogs.delete = false"
       :task="task"
@@ -52,22 +49,13 @@
 </template>
 
 <script>
-import DialogDelet from './Dialogs/DialogDelete.vue'
-import DialogEdit from './Dialogs/DialogEdit.vue'
-import DialogDueDate from './Dialogs/DialogDueDate.vue'
-
 export default {
-  components:{
-    DialogDelet,
-    DialogEdit,
-    DialogDueDate
-  },
   props: ['task'],
   data: () => ({
     dialogs: {
       edit: false,
       dueDate: false,
-      delete: false,
+      delete: false
     },
     items: [
       { 
@@ -90,6 +78,13 @@ export default {
         click() {
           this.dialogs.delete = true
         }
+      },
+      {
+        title: 'Sort',
+        icon: 'mdi-drag-horizontal-variant',
+        click() {
+          this.$store.commit('toggleSorting')
+        }
       }
     ],
   }),
@@ -97,6 +92,11 @@ export default {
     handleClick(index) {
       this.items[index].click.call(this)
     }
+  },
+  components: {
+    'dialog-edit': require('@/components/Todo/Dialogs/DialogEdit.vue').default,
+    'dialog-due-date': require('@/components/Todo/Dialogs/DialogDueDate.vue').default,
+    'dialog-delete': require('@/components/Todo/Dialogs/DialogDelete.vue').default,
   }
 }
 </script>

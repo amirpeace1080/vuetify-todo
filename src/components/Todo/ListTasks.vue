@@ -1,69 +1,38 @@
 <template>
   <v-list
-      v-if="$store.state.tasks.length"
-      class="pt-0"
-      flat>
-
-    <Task
-        v-for="task in $store.state.tasks"
+    class="pt-0"
+    flat
+  >
+    <draggable
+      v-model="tasks"
+      handle=".handle"
+    >
+      <task 
+        v-for="task in tasks"
         :key="task.id"
         :task="task"
-    />
-
-      <!-- <div v-for="task in $store.state.tasks" :key="task.id">
-        <v-list-item @click="$store.commit('doneTask', task.id)"
-          :class="{'blue lighten-5' : task.done}">
-          <template v-slot>
-            <v-list-item-action>
-              <v-checkbox 
-                :input-value="task.done"
-                color="primary"
-              ></v-checkbox>
-            </v-list-item-action>
-
-            <v-list-item-content>
-              <v-list-item-title
-                :class="{'text-decoration-line-through' : task.done}"
-              >
-                {{ task.title }}
-              </v-list-item-title>
-            </v-list-item-content>
-
-
-          <v-list-item-action>
-            <v-btn
-              @click.stop="$store.commit('deleteTask', task.id)"
-              icon>
-              <v-icon color="primary lighten-1">mdi-delete</v-icon>
-            </v-btn>
-          </v-list-item-action>
-          </template>
-
-
-        </v-list-item>
-        <v-divider></v-divider>
-      </div> -->
-
-      
-    </v-list>
-
-    <!-- <div
-      v-else
-    >
-      <div class="text-h5">No tasks</div>
-    </div> -->
+      />
+    </draggable>
+  </v-list>
 </template>
 
 <script>
-import Task from './../Todo/Task.vue'
+import draggable from 'vuedraggable'
 
 export default {
-    components:{
-        Task
+  computed: {
+    tasks: {
+      get() {
+        return this.$store.getters.tasksFiltered
+      },
+      set(value) {
+        this.$store.commit('setTasks', value)
+      }
     }
+  },
+  components: {
+    'task': require('@/components/Todo/Task.vue').default,
+    draggable
+  }
 }
 </script>
-
-<style>
-
-</style>
