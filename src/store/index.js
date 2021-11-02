@@ -6,9 +6,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     tasks: [
-      { id: 1, title: "Wake up", done: false },
-      { id: 2, title: "Get bananas", done: false },
-      { id: 3, title: "Eat bananas", done: false },
+      { id: 1, title: "Wake up", done: false, dueDate: '2021-10-2' },
+      { id: 2, title: "Get bananas", done: false, dueDate: '2021-10-3' },
+      { id: 3, title: "Eat bananas", done: false, dueDate: null },
     ],
     snackbar:{
       show: false,
@@ -20,7 +20,8 @@ export default new Vuex.Store({
       let newTask ={
         id: Date.now(),
         title: newTaskTitle,
-        done: false
+        done: false,
+        dueDate: null,
       }
       state.tasks.push(newTask)
     },
