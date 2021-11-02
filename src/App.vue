@@ -1,29 +1,31 @@
 <template>
   <v-app id="inspire">
-     <v-navigation-drawer
+    <v-navigation-drawer
       v-model="drawer"
       app
     >
-      <template v-slot:prepend>
-        <v-list-item two-line>
-          <v-list-item-avatar>
-            <img src="https://randomuser.me/api/portraits/women/81.jpg">
-          </v-list-item-avatar>
-
-          <v-list-item-content>
-            <v-list-item-title>Jane Smith</v-list-item-title>
-            <v-list-item-subtitle>Logged In</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-      </template>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="title">
+            Vuetify Todo
+          </v-list-item-title>
+          <v-list-item-subtitle>
+            Best Todo Ever!
+          </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
 
       <v-divider></v-divider>
 
-      <v-list dense>
+      <v-list
+        dense
+        nav
+      >
         <v-list-item
           v-for="item in items"
           :key="item.title"
           :to="item.to"
+          link
         >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
@@ -36,59 +38,53 @@
       </v-list>
     </v-navigation-drawer>
 
-     <v-app-bar
+    <v-app-bar
       app
       color="primary"
       dark
-      shrink-on-scroll
+      src="mountains.jpg"
       prominent
-      src="https://picsum.photos/1920/1080?random"
-      scroll-target="#scrolling-techniques-5"
     >
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
-          gradient="to top right, rgba(55,236,186,.7), rgba(25,32,72,.7)"
+          gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
         ></v-img>
       </template>
 
-      <v-app-bar-nav-icon @click="drawer =! drawer"></v-app-bar-nav-icon>
-
-      <v-app-bar-title>Vuetify Todo</v-app-bar-title>
-
-      <v-spacer></v-spacer>
-
-
-      <Search />
+      <v-container class="pa-0">
+        <v-row>
+          <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+          <v-spacer></v-spacer>
+          <search />
+        </v-row>
+        <v-row>
+          <v-toolbar-title class="ml-4">Vuetify Todo</v-toolbar-title>
+        </v-row>
+      </v-container>
 
     </v-app-bar>
 
     <v-main>
-      <router-view />
-      <Snackbar />
+      <router-view></router-view>
+      <snackbar />
     </v-main>
   </v-app>
 </template>
 
-
 <script>
-import Snackbar from './components/Shared/Snackbar.vue'
-import Search from './components/Tools/Search.vue'
 
-export default {
-  components: {
-    Snackbar,
-    Search
-  },
-  data(){
-    return{
+  export default {
+    data: () => ({
       drawer: null,
       items: [
-          { title: 'Home', icon: 'mdi-home-city', to: '/' },
-          { title: 'My Account', icon: 'mdi-account', to: '/about' },
-          { title: 'Users', icon: 'mdi-account-group-outline' },
-        ],
+        { title: 'Todo', icon: 'mdi-format-list-checks', to: '/' },
+        { title: 'About', icon: 'mdi-help-box', to: '/about' },
+      ],
+    }),
+    components: {
+      'search': require('@/components/Tools/Search.vue').default,
+      'snackbar': require('@/components/Shared/Snackbar.vue').default
     }
   }
-}
 </script>
