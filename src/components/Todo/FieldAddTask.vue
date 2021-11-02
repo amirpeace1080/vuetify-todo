@@ -7,8 +7,19 @@
       outlined
       label="Add Task"
       hide-details
-      clearable
-      append-icon="mdi-plus"></v-text-field>
+      clearable>
+      
+    <template v-slot:append>
+      <v-icon
+        @click="addTask"
+        :disabled="newTaskTitleInvalid"
+        color="primary"
+      >
+        mdi-plus
+      </v-icon>
+  </template>
+      
+      </v-text-field>
 </template>
 
 <script>
@@ -19,10 +30,17 @@ export default {
       
     };
   },
+  computed:{
+    newTaskTitleInvalid(){
+      return !this.newTaskTitle
+    }
+  },
   methods:{
     addTask(){
-      this.$store.dispatch('addTask', this.newTaskTitle)
-      this.newTaskTitle = ''
+      if(!this.newTaskTitleInvalid){
+        this.$store.dispatch('addTask', this.newTaskTitle)
+        this.newTaskTitle = ''
+      }
     },
   }
 }

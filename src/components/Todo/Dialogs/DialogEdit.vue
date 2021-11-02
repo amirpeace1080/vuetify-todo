@@ -23,6 +23,7 @@
           </v-btn>
           <v-btn
             @click="saveTask"
+            :disabled="taskTitleInvalid"
             color="red darken-1"
             text
           >
@@ -43,12 +44,22 @@ export default {
   },
   methods:{
     saveTask(){
-      let payload= {
+      if(!this.taskTitleInvalid){
+        let payload= {
         id: this.task.id,
         title: this.taskTitle
+        }
+        this.$store.dispatch('updateTaskTitle', payload)
+        this.$emit('close')
+        }
       }
-      this.$store.commit('updateTaskTitle', payload)
-      this.$emit('close')
+
+      
+  },
+
+  computed:{
+    taskTitleInvalid(){
+      return !this.taskTitle || this.taskTitle === this.task.title
     }
   },
   mounted(){
