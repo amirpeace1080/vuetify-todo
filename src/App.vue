@@ -58,17 +58,9 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
 
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
+      <Search />
 
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
     </v-app-bar>
 
     <v-main>
@@ -81,10 +73,12 @@
 
 <script>
 import Snackbar from './components/Shared/Snackbar.vue'
+import Search from './components/Tools/Search.vue'
 
 export default {
   components: {
-    Snackbar
+    Snackbar,
+    Search
   },
   data(){
     return{
