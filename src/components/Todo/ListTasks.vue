@@ -7,7 +7,7 @@
       v-model="tasks"
       handle=".handle"
     >
-      <task 
+      <Task 
         v-for="task in tasks"
         :key="task.id"
         :task="task"
@@ -18,8 +18,13 @@
 
 <script>
 import draggable from 'vuedraggable'
+import Task from './Task.vue'
 
 export default {
+  components: {
+    Task,
+    draggable
+  },
   computed: {
     tasks: {
       get() {
@@ -30,9 +35,5 @@ export default {
       }
     }
   },
-  components: {
-    'task': require('@/components/Todo/Task.vue').default,
-    draggable
-  }
 }
 </script>

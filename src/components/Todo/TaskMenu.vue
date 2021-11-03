@@ -29,17 +29,17 @@
       </v-list>
     </v-menu>
 
-    <dialog-edit
+    <DialogEdit
       v-if="dialogs.edit"
       @close="dialogs.edit = false"
       :task="task"
     />
-    <dialog-due-date
+    <DialogDueDate
       v-if="dialogs.dueDate"
       @close="dialogs.dueDate = false"
       :task="task"
     />
-    <dialog-delete
+    <DialogDelete
       v-if="dialogs.delete"
       @close="dialogs.delete = false"
       :task="task"
@@ -49,8 +49,17 @@
 </template>
 
 <script>
+import DialogEdit from './../../components/Todo/Dialogs/DialogEdit.vue'
+import DialogDueDate from './../../components/Todo/Dialogs/DialogDueDate.vue'
+import DialogDelete from './../../components/Todo/Dialogs/DialogDelete.vue'
+
 export default {
   props: ['task'],
+  components:{
+    DialogEdit,
+    DialogDueDate,
+    DialogDelete
+  },
   data: () => ({
     dialogs: {
       edit: false,
@@ -98,11 +107,6 @@ export default {
       this.items[index].click.call(this)
     }
   },
-  components: {
-    'dialog-edit': require('@/components/Todo/Dialogs/DialogEdit.vue').default,
-    'dialog-due-date': require('@/components/Todo/Dialogs/DialogDueDate.vue').default,
-    'dialog-delete': require('@/components/Todo/Dialogs/DialogDelete.vue').default,
-  }
 }
 </script>
 

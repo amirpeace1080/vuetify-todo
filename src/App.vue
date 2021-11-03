@@ -13,15 +13,15 @@
       >
         <v-avatar size="70" class="mb-2">
           <img
-            src="https://s.gravatar.com/avatar/ce7f3697e231df38b3ca6065848520da?s=160"
+            src="https://avatars.githubusercontent.com/u/48976395?v=4"
             alt="Danny Connell"
           >
         </v-avatar>
         <div class="white--text text-subtitle-1 font-weight-bold">
-          Danny Connell
+          Mohammad Sharifi
         </div>
         <div class="white--text text-subtitle-2">
-          danny__connell
+          mohammad__sharifi
         </div>
       </v-img>
 
@@ -65,7 +65,7 @@
         <v-row>
           <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
           <v-spacer></v-spacer>
-          <search />
+          <Search />
         </v-row>
         <v-row>
           <v-toolbar-title class="text-h4 ml-4">
@@ -73,10 +73,10 @@
           </v-toolbar-title>
         </v-row>
         <v-row>
-          <live-date-time />
+          <LiveDateTime />
         </v-row>
         <v-row v-if="$route.path === '/'">
-          <field-add-task />
+          <FieldAddTask />
         </v-row>
       </v-container>
 
@@ -84,13 +84,24 @@
 
     <v-main>
       <router-view></router-view>
-      <snackbar />
+      <Snackbar />
     </v-main>
   </v-app>
 </template>
 
 <script>
+import Search from './components/Tools/Search.vue'
+import LiveDateTime from './components/Tools/LiveDateTime.vue'
+import FieldAddTask from './components/Todo/FieldAddTask.vue'
+import Snackbar from './components/Shared/Snackbar.vue'
+
   export default {
+    components:{
+      Search,
+      LiveDateTime,
+      FieldAddTask,
+      Snackbar
+    },
     data: () => ({
       drawer: null,
       items: [
@@ -101,12 +112,6 @@
     mounted() {
       this.$store.dispatch('getTasks')
     },
-    components: {
-      'search': require('@/components/Tools/Search.vue').default,
-      'live-date-time': require('@/components/Tools/LiveDateTime.vue').default,
-      'field-add-task': require('@/components/Todo/FieldAddTask.vue').default,
-      'snackbar': require('@/components/Shared/Snackbar.vue').default
-    }
   }
 </script>
 

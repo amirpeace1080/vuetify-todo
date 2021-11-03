@@ -30,7 +30,7 @@
         </v-list-item-action>
 
         <v-list-item-action>
-          <task-menu :task="task" />
+          <TaskMenu :task="task" />
         </v-list-item-action>
 
         <v-list-item-action
@@ -54,17 +54,18 @@
 
 <script>
 import { format } from 'date-fns'
+import TaskMenu from './TaskMenu.vue'
 
 export default {
   props: ['task'],
+  components:{
+    TaskMenu
+  },
   filters: {
     niceDate(value) {
       return format(new Date(value), 'MMM d')
     }
   },
-  components: {
-    'task-menu': require('@/components/Todo/TaskMenu.vue').default
-  }
 }
 </script>
 
